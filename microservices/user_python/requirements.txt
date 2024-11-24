@@ -1,0 +1,15 @@
+cryptography==43.0.1
+
+environs==9.5.0
+loguru==0.7.2
+
+uvicorn==0.30.6
+fastapi==0.114.2
+
+alembic==1.13.2
+
+SQLAlchemy==1.4.41
+PyMySQL==1.1.1
+
+passlib==1.7.4
+PyJWT==2.8.0
