@@ -8,7 +8,7 @@ export class UserController {
   @ApiBearerAuth()
   @UseGuards(JwtAuthGuard)
   @Get('/current-user')
-  check(@Request() req) {
+  getCurrentUser(@Request() req) {
     const user = req.user;
 
     return {
