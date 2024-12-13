@@ -1,0 +1,41 @@
+_format_version: "3.0"
+
+upstreams:
+  - name: user-load-balancing
+    targets:
+      - target: microservices_user_python:5005
+        weight: 100
+      - target: microservices_user_javascript:5005
+        weight: 50
+
+services:
+  - name: microservices_auth
+    url: "http://microservices_auth:5005"
+    routes:
+      - name: microservices_auth_route
+        strip_path: false
+        paths:
+          - ~/api/microservices_auth
+  - name: microservices_hello
+    url: "http://microservices_hello:5005"
+    routes:
+      - name: microservices_hello_route
+        strip_path: false
+        paths:
+          - ~/api/microservices_hello
+
+  - name: microservices_user
+    host: user-load-balancing
+    routes:
+      - name: microservices_user_route
+        strip_path: false
+        paths:
+          - ~/api/microservices_user
+
+plugins:
+  - name: file-log
+    config:
+      path: /tmp/file.log
+  - name: rate-limiting
+    config:
+      minute: 100
