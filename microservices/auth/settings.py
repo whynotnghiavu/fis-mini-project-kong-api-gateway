@@ -8,10 +8,7 @@ env = Env()
 logger.info(f"Loading environment variables...")
 
 
-try:
-    NAME_SERVICE = env.str("NAME_SERVICE")
-except Exception as e:
-    print(f"Error: {e}")
+NAME_SERVICE = env.str("NAME_SERVICE")
 
 
 FASTAPI_ENVIRONMENT = env.str("FASTAPI_ENVIRONMENT", default="DEVELOPMENT")
